@@ -1,0 +1,68 @@
+
+from flask import Flask, request, jsonify
+import pickle
+
+from sklearn.linear_model import LogisticRegression
+
+# Assuming you have trained a model (e.g., Logistic Regression)
+model = LogisticRegression()
+
+# Save the trained model to a file
+with open('model.pkl', 'wb') as model_file:
+    pickle.dump(model, model_file)
+
+
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+# Assuming you have created a vectorizer (e.g., TfidfVectorizer)
+vectorizer = TfidfVectorizer()
+
+
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return "Hello, World!"
+
+@app.route('/routes')
+def list_routes():
+    import urllib
+    output = []
+    for rule in app.url_map.iter_rules():
+        methods = ','.join(rule.methods)
+        line = urllib.parse.unquote(f"{rule.endpoint:50s} {methods:20s} {str(rule)}")
+        output.append(line)
+    return '<br>'.join(sorted(output))
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
+# Save the vectorizer to a file
+with open('vectorizer.pkl', 'wb') as vec_file:
+    pickle.dump(vectorizer, vec_file)
+
+app = Flask(__name__)
+
+# Save the model and vectorizer
+with open('model.pkl', 'wb') as model_file:
+    pickle.dump(model, model_file)
+with open('vectorizer.pkl', 'wb') as vec_file:
+    pickle.dump(vectorizer, vec_file)
+
+@app.route('/predict', methods=['POST'])
+def predict():
+    message = request.json['message']
+    message_vec = vectorizer.transform([message])
+    prediction = model.predict(message_vec)
+    result = 'spam' if prediction[0] == 1 else 'ham'
+    return jsonify({'prediction': result})
+
+if __name__ == '__main__':
+    with open('model.pkl', 'rb') as model_file:
+        model = pickle.load(model_file)
+    with open('vectorizer.pkl', 'rb') as vec_file:
+        vectorizer = pickle.load(vec_file)
+    app.run(debug=True)
