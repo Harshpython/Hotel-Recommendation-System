@@ -1,3 +1,4 @@
+#importing all the modules
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
@@ -16,7 +17,7 @@ df = pd.read_csv('hotel_reviews.csv')
 ps = PorterStemmer()
 
 # Function to preprocess the text
-def preprocess_text(text):
+def preprocess_text(text):#text process
     text = text.lower()  # Lowercase
     text = ''.join([char for char in text if char not in string.punctuation])  # Remove punctuation
     words = text.split()  # Split into words
@@ -27,14 +28,14 @@ def preprocess_text(text):
 df['processed_review'] = df['review'].apply(preprocess_text)
 
 # Create TF-IDF matrix
-tfidf = TfidfVectorizer()
+tfidf = TfidfVectorizer()#convert tfdif 
 tfidf_matrix = tfidf.fit_transform(df['processed_review'])
 
 # Compute cosine similarity matrix
 cosine_sim = linear_kernel(tfidf_matrix, tfidf_matrix)
 
 # Create a mapping of hotel IDs to indices
-hotel_indices = pd.Series(df.index, index=df['hotel_id']).drop_duplicates()
+hotel_indices = pd.Series(df.index, index=df['hotel_id']).drop_duplicates()#
 
 # Function to get recommendations
 def get_recommendations(hotel_id, cosine_sim=cosine_sim):
