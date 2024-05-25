@@ -4,7 +4,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
-import nltk
+import nltk#tool kit
 import string
 
 # Download stopwords
@@ -22,7 +22,7 @@ def preprocess_text(text):#text process
     text = ''.join([char for char in text if char not in string.punctuation])  # Remove punctuation
     words = text.split()  # Split into words
     words = [ps.stem(word) for word in words if word not in stopwords.words('english')]  # Remove stopwords and stem
-    return ' '.join(words)
+    return ' '.join(words)# to join
 
 # Apply preprocessing
 df['processed_review'] = df['review'].apply(preprocess_text)
