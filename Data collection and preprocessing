@@ -1,0 +1,15 @@
+import pandas as pd
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import linear_kernel
+from nltk.corpus import stopwords
+from nltk.stem import PorterStemmer
+import nltk
+
+# Download stopwords
+nltk.download('stopwords')
+
+# Load dataset
+df = pd.read_csv('hotel_reviews.csv')
+
+# Display the first few rows
+print(df.head())
