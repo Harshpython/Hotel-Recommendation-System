@@ -1,4 +1,4 @@
-Hotel-Recommendation-System
+ Hotel-Recommendation-System
 
 Creating a hotel recommendation system site involves multiple steps, from data collection and preprocessing to building the recommendation model, and finally, developing the website. Here's a high-level outline of the steps involved:
 1 Data CollectionCollect data about hotels, including features like location, price, amenities, user reviews, ratings, etc. You can source this data from online datasets, hotel APIs, or web scraping.
