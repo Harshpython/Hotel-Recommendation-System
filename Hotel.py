@@ -1,9 +1,10 @@
-#importing all the modules
+#importing all the libraries required for execution
+
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
 from nltk.corpus import stopwords
-from nltk.stem import PorterStemmer
+from nltk.stem import PorterStemmer# natural preprocessing tool kit
 import nltk#tool kit
 import string
 
@@ -29,7 +30,7 @@ df['processed_review'] = df['review'].apply(preprocess_text)
 
 # Create TF-IDF matrix
 tfidf = TfidfVectorizer()#convert tfdif 
-tfidf_matrix = tfidf.fit_transform(df['processed_review'])
+tfidf_matrix = tfidf.fit_transform(df['processed_review'])#time frequency inverse document frequency
 
 # Compute cosine similarity matrix
 cosine_sim = linear_kernel(tfidf_matrix, tfidf_matrix)
