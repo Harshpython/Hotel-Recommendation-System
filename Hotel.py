@@ -1,7 +1,7 @@
 #importing all the libraries required for execution
 
 import pandas as pd
-from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer 
 from sklearn.metrics.pairwise import linear_kernel
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer# natural preprocessing tool kit
