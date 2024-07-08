@@ -5,6 +5,6 @@ Creating a hotel recommendation system site involves multiple steps, from data c
 2 Data PreprocessingClean and preprocess the data to make it suitable for analysis and modeling. This step involves handling missing values, normalizing data, and possibly encoding categorical variableles.
 3 Building the Recommendation ModelUse a machine learning algorithm to build the recommendation model. Popular algorithms for recommendation systems include Collaborative Filtering, Content-Based Filtering, and Hybrid Models. For simplicity, let's use a Collaborative Filtering approach with the surprise library in Python.
 4.Developing the WebsiteDevelop a web application using Flask (for the backend) and HTML/CSS/JavaScript (for the frontend).
-5.The full project deployed at Heroku.  
+5.The full project deployed at Heroku.    
 
 
